@@ -1,0 +1,28 @@
+# Excluded files
+rospipe copia.py
+z_fringes/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# FITS / data
+*.fits
+*.fits.gz
+*.fits.fz
+*.fz
+*.fts
+
+# macOS
+.DS_Store
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Outputs
+reduced/
+phot_*.txt
+phot_*.png
+photcal.txt
+lightcurve_ros2.csv
