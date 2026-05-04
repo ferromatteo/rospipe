@@ -17,6 +17,8 @@ __pycache__/
 # But keep shared calibration products in cal/
 !cal/bpm_*.fits
 !cal/master_fringe*.fits
+!cal/master_bias*.fits
+!cal/master_flat*.fits
 
 # macOS
 .DS_Store
