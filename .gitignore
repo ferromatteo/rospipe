@@ -7,12 +7,16 @@ __pycache__/
 *.py[cod]
 *.pyo
 
-# FITS / data
+# FITS / data — exclude by default
 *.fits
 *.fits.gz
 *.fits.fz
 *.fz
 *.fts
+
+# But keep shared calibration products in cal/
+!cal/bpm_*.fits
+!cal/master_fringe*.fits
 
 # macOS
 .DS_Store
