@@ -1541,7 +1541,7 @@ def _reduce_one_image(sf, bias_data, flat_data, bpm, fringe_data, fringe_precomp
         )
     if not no_crclean:
         sci_hdr["HISTORY"] = f"CR cleaned (astroscrappy): {ncr} pixels"
-    sci_hdr["PROCSTAT"] = (1, "Processing status: 1=reduced, 2=astrometry done")
+    sci_hdr["PROCSTAT"] = (4, "Processing status: 1=reduced, 2=astrometry done, 4=rospipe reduced (WCS from telescope)")
     fits.writeto(outpath, reduced.astype(np.float32), header=sci_hdr, overwrite=True)
 
     cr_info = f", {ncr} CR" if not no_crclean else ""
