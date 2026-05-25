@@ -1588,7 +1588,7 @@ def _download_live_cal(url, dest_path, timeout=60, retries=2):
 
 
 def _apply_live_calibrations(biases, flats, filters, cal_dir, timeout=60):
-    """Download latest bias/flat from the ROSS2 server for each filter.
+    """Download latest bias/flat from the ROS2 server for each filter.
     Falls back silently to the existing local entry on failure.
     Returns updated (biases, flats) dicts.
     """
@@ -1649,7 +1649,7 @@ def main():
     ap.add_argument("--no-bpm", action="store_true",
                      help="Disable bad pixel mask")
     ap.add_argument("--live", action="store_true",
-                     help="Download latest master bias/flat from ROSS2 server; "
+                     help="Download latest master bias/flat from ROS2 server; "
                           "fall back to local files on failure")
     ap.add_argument("--no-phot", action="store_true",
                      help="Skip photometric calibration after reduction")
@@ -1711,7 +1711,7 @@ def main():
 
     biases, flats = biases_sci, flats_sci
 
-    # --- live calibrations: try to download latest from ROSS2 server ---
+    # --- live calibrations: try to download latest from ROS2 server ---
     if args.live:
         biases, flats = _apply_live_calibrations(
             biases, flats, science_all.keys(), cal_dir)
