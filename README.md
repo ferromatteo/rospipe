@@ -106,10 +106,9 @@ python rospipe.py . -f targets.txt
 2. **Bad-pixel masking** (pixels set to NaN)
 3. **z-band defringing** — fits and subtracts a scaled, optionally shifted master fringe
 4. **Cosmic-ray rejection** via `astroscrappy`
-5. Write `red_*.fits` with `PROCSTAT=1` in the header
+5. Write `red_*.fits` with `PROCSTAT=4` in the header (WCS preserved from the telescope's own astrometric solution)
 
-6. **Astrometry refinement** — quad-matching of detected sources against the reference catalog; if successful, updates the WCS and sets `PROCSTAT=2`. Frames that fail astrometry are skipped for photometry.
-7. **Aperture photometry** with SEP at the refined WCS positions
+6. **Aperture photometry** with SEP using the WCS from the header
 8. **Catalog cross-match** against online reference catalogs (PanSTARRS, SDSS, APASS, SkyMapper via TOCats), with VSX variable-star filtering
 9. **Iterative sigma-clipped zeropoint fit**
 10. Write per-image `phot_*.txt` catalog and calibration plot `phot_*.png`
@@ -137,10 +136,9 @@ python rospipe.py . -f targets.txt
 
 | Value | Meaning |
 |---|---|
-| `1` | Frame reduced (bias/flat/BPM/CR done) |
-| `2` | Astrometry solved — WCS reliable, photometry available |
+| `4` | Frame reduced by rospipe — WCS preserved from the telescope's astrometric solution |
 
-On `--phot-only`, frames with `PROCSTAT=2` skip the quad-matching step and go directly to photometry.
+On `--phot-only`, all `red_*.fits` frames go directly to photometry (astrometry is never re-attempted).
 
 ### Forced photometry (`-f targets.txt`)
 
