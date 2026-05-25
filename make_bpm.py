@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build a bad-pixel mask (BPM) for each ROSS2 filter/quadrant.
+Build a bad-pixel mask (BPM) for each ROS2 filter/quadrant.
 
 Sources for flagging:
   1. NaN/Inf in master flat  (dead / zero-padded region)

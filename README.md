@@ -1,8 +1,8 @@
-# ROSS2 Optical Pipeline
+# ROS2 Optical Pipeline
 
-A Python pipeline for reducing and calibrating optical images from the **ROSS2** instrument on the [REM telescope](https://www.rem.inaf.it) (La Silla, ESO).
+A Python pipeline for reducing and calibrating optical images from the **ROS2** instrument on the [REM telescope](https://www.rem.inaf.it) (La Silla, ESO).
 
-ROSS2 is a 4-quadrant imager covering *g, r, i, z* bands simultaneously.  
+ROS2 is a 4-quadrant imager covering *g, r, i, z* bands simultaneously.  
 This pipeline handles all steps from raw frames to calibrated photometric catalogs.
 
 ---
@@ -55,7 +55,7 @@ The pipeline expects the following files in `cal/` (or the directory passed via 
 | `bpm_{FILT}.fits` | Bad-pixel mask (0=good, 1=bad) |
 | `master_fringe_z.fits` | Master fringe for z-band defringing |
 
-ROSS2 quadrant–filter mapping: `g→UR`, `r→BR`, `i→UL`, `z→BL`.
+ROS2 quadrant–filter mapping: `g→UR`, `r→BR`, `i→UL`, `z→BL`.
 
 ### `make_bpm.py` — Build bad-pixel masks
 
@@ -90,7 +90,7 @@ python rospipe.py .
 # Use a separate calibration directory
 python rospipe.py /data/sci --cal /data/cal
 
-# Download latest master bias/flat from the ROSS2 server before reducing
+# Download latest master bias/flat from the ROS2 server before reducing
 python rospipe.py . --live
 
 # Re-run only photometry on already-reduced frames
@@ -120,7 +120,7 @@ python rospipe.py . -f targets.txt
 |---|---|---|
 | `--cal DIR` | `./cal` | Calibration directory |
 | `--outdir DIR` | `sci_dir/reduced` | Output directory |
-| `--live` | off | Download latest master bias/flat from ROSS2 server into `cal/` as `live_bias_{filt}.fits.gz` / `live_flat_{filt}.fits.gz`; falls back to local on failure |
+| `--live` | off | Download latest master bias/flat from ROS2 server into `cal/` as `live_bias_{filt}.fits.gz` / `live_flat_{filt}.fits.gz`; falls back to local on failure |
 | `--phot-only` | off | Skip reduction, re-run photometry on existing `red_*.fits` |
 | `-f FILE` | — | Forced photometry target file (see below) |
 | `--phot-radius` | 5.0 px | Aperture radius |

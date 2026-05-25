@@ -565,16 +565,24 @@ def _detect_sources(data, threshold_sigma=3.0, min_pixels=5):
     return sources, data_sub, rms
 
 
-def _compute_lim_mag(zp, bkg_rms_map, aperture_radius, snr=3.0):
+def _compute_lim_mag(zp, bkg_rms_map, aperture_radius, snr=3.0,
+                     central_fraction=0.8):
     """3-sigma limiting magnitude from median background RMS map.
+
+    Uses only the central `central_fraction` of the map to avoid noisy/vignetted
+    edges inflating the RMS estimate.
 
     lim_mag = ZP + 25 - 2.5 * log10(snr * median_rms * sqrt(N_pix_in_aperture))
     where N_pix = pi * r^2 and 25 is the instrumental zeropoint.
     """
     if zp is None:
         return np.nan
-    n_pix   = np.pi * aperture_radius ** 2
-    rms_sky = float(np.nanmedian(bkg_rms_map))
+    n_pix = np.pi * aperture_radius ** 2
+    ny, nx = bkg_rms_map.shape
+    my = int(ny * (1 - central_fraction) / 2)
+    mx = int(nx * (1 - central_fraction) / 2)
+    central = bkg_rms_map[my:ny - my, mx:nx - mx]
+    rms_sky = float(np.nanmedian(central))
     if rms_sky <= 0:
         return np.nan
     flux_lim = snr * rms_sky * np.sqrt(n_pix)
